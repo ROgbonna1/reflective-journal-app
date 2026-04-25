@@ -25,8 +25,13 @@ behavior, schema, or scope shifts.
   resolved decisions log, open items
 - [docs/seeded-games.md](./docs/seeded-games.md) — the 14 pre-seeded BJJ games
   shipped on first launch (each description doubles as LLM grounding text)
+- [docs/workstreams.md](./docs/workstreams.md) — parallel work tracks, task
+  menu, claim process, and conventions
+- [docs/documentation-inconsistencies.md](./docs/documentation-inconsistencies.md)
+  — running tracker for cross-doc inconsistencies
 
 ## Status
 
-Pre-implementation. Currently planning v1 scope and domain model. No app code
-yet.
+Implementation kicked off with parallel workstreams. See
+[docs/workstreams.md](./docs/workstreams.md) for active tasks and what's
+available to claim.
