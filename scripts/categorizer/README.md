@@ -42,3 +42,41 @@ Per [`docs/domain-model.md`](../../docs/domain-model.md): cheapest model that
 supports structured outputs and handles BJJ vocabulary; for personal volume
 (~3 skills/day), monthly cost is well under $0.50. The interface is
 swappable — the `categorize` function takes a model option.
+
+## Latest test result
+
+First baseline run: **9 / 10 exact** (game + role) and **9 / 10 acceptable**
+(right game, role debatable). Quality bar (≥ 8 / ≥ 9) cleared.
+
+The one miss is a real prompt-iteration signal — captured under
+*Known prompt-iteration items* below.
+
+## Known prompt-iteration items
+
+### Top-vs-bottom perspective anchoring
+
+**Symptom:** *"Top half guard underhook to mount"* (a top-player passing
+sequence) was filed under `half-guard-bottom / transition` instead of
+`passing-game / pass`. The model latched on to the word "underhook" — a
+classic bottom-half-guard cue — even though the surrounding description
+clearly describes the top player escaping the half guard.
+
+**Hypothesis:** the prompt doesn't tell the model that "from top X" or
+"from bottom X" should anchor the categorization to the practitioner's
+side, overriding any role-keyword associations.
+
+**Possible prompt addition:** something like *"When the skill names a side
+('top half guard', 'bottom mount'), file it under the game representing
+that side's experience, even if cues like 'underhook' or 'frame' are more
+strongly associated with the opposite side."*
+
+Try, re-run `npm test`, see whether case 10 flips while the other 9 stay
+green.
+
+## Dev-environment note
+
+`run-tests.ts` calls `dotenv.config({ override: true })` (rather than the
+default `import "dotenv/config"`) because some sandboxed shells — including
+Claude Code's Bash tool — pre-define `ANTHROPIC_API_KEY=""` to prevent key
+leakage, and `dotenv` refuses to overwrite an already-set env var by
+default. The override flag makes `.env` win.

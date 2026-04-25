@@ -35,10 +35,13 @@ wiring it into the app.
 its own `package.json` so it doesn't conflict with B1's Expo scaffold at the
 project root).
 
-**Status:** prototype scaffolded at `scripts/categorizer/`. Test runner
-(`npm test`) sends 10 fixture skills through `categorize()` against Claude
-Haiku 4.5 and scores against the quality bar. Next: `npm install`, set
-`ANTHROPIC_API_KEY`, run, iterate the prompt to clear the bar.
+**Status:** quality bar cleared on first run — **9 / 10 exact**, **9 / 10
+acceptable** against `claude-haiku-4-5`. Multi-game suggestions working as
+designed (e.g. SLX-from-butterfly correctly fanned out into both
+`butterfly-guard` and `x-guard`). One known prompt-iteration item
+(top-vs-bottom perspective on the half-guard pass) tracked in
+`scripts/categorizer/README.md`. Module is ready to port into the Expo app
+once B1 lands.
 
 
 ## Stream B — App Foundation  (for Quantamentals to pick from)
@@ -169,7 +172,7 @@ questions to avoid rework:
 
 | Task | Owner          | Status      | PR  |
 |------|----------------|-------------|-----|
-| A    | Reuben         | prototype scaffolded; iterating prompt | — |
+| A    | Reuben         | quality bar cleared (9/10 exact); ready to port | — |
 | B1   | _(unclaimed)_  |             |     |
 | B2   | _(unclaimed)_  |             |     |
 | B3   | _(unclaimed)_  |             |     |

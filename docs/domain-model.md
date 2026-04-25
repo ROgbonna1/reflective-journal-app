@@ -474,14 +474,24 @@ the model looks the way it does:
 - **LLM = Claude Haiku 4.5** behind a swappable `SkillCategorizer` interface.
   Cheaper than self-hosting for personal volume. User-provided key, on-device.
 - **No backend service.** Everything is on-device + direct LLM calls.
+- **Categorization UX defaults (v1):** auto-categorize on save (no separate
+  "Categorize" tap — review sheet shows after save), top 3 suggestions max,
+  pre-check suggestions with confidence ≥ 0.7, multi-game filing encouraged
+  (pre-check multiple high-confidence). User can always edit role, remove,
+  or add another game manually.
+- **Categorizer quality bar:** ≥ 8 / 10 exact (game + role) and ≥ 9 / 10
+  acceptable (right game, role debatable) on the standalone test set in
+  `scripts/categorizer/test-skills.json`. Cleared on the first prototype run
+  with Claude Haiku 4.5 (9 / 9).
 
 ## Open questions
 
 1. **Pre-seeded games list** — see `docs/seeded-games.md` (drafted separately
    so each game's description can double as LLM grounding text).
-2. **Auto-categorize on save vs explicit "Categorize" tap?** Doc currently
-   shows explicit tap. Could also auto-fire on save with a quick review
-   sheet. Try one, iterate.
-3. **Standalone reflections — what does "Suggest links" use as context?** No
+2. **Standalone reflections — what does "Suggest links" use as context?** No
    session means no "skills from that session" seed. Likely use last 7-14
    days of skills + all games. Decide when implementing.
+3. **Top-vs-bottom anchoring in the categorizer prompt.** Known iteration
+   item: the prompt over-weights position keywords ("underhook in half
+   guard") rather than the practitioner's perspective ("from top half guard").
+   Tracked in `scripts/categorizer/README.md`.
