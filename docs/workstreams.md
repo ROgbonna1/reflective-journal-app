@@ -117,6 +117,40 @@ testable.
 **Touches:** `app/screens/Settings/`, `app/lib/secure-storage.ts`.
 
 
+## Considerations for project lead (architecture/backend)
+
+Before implementation of B2/B4 is finalized, align on these architecture
+questions to avoid rework:
+
+1. **No-backend vs thin backend now:** Do we keep v1 as pure on-device
+   (`SQLite` + direct Anthropic calls), or stand up a minimal backend now for
+   key proxying, request observability, and future sync readiness?
+2. **If backend exists, what framework/runtime:** Should we standardize on
+   `Node + Fastify`, `Node + NestJS`, or `Cloudflare Workers`/serverless for a
+   thin API layer?
+3. **LLM call path ownership:** Should categorization stay client-side only, or
+   should we route it through a backend boundary for retries, rate limiting,
+   and prompt/version control?
+4. **Data model portability:** Should repository contracts in B2 be designed as
+   local-first adapters that can map directly to a future server API without
+   changing screen-level call sites?
+5. **ID and timestamp standards:** Do we lock UUID generation and timestamp
+   format now (ISO UTC everywhere) to prevent migration friction if sync is
+   added later?
+6. **Migration authority:** In a future sync scenario, does SQLite migration
+   remain app-driven only, or should backend schema/versioning become the
+   authority with compatibility checks on startup?
+7. **Seeded taxonomy ownership:** Are seeded games treated as app-bundled
+   constants only, or should we support backend-delivered taxonomy updates in
+   the future (versioned seed packs)?
+8. **Testing boundary:** For B2, are in-memory repository tests sufficient for
+   now, or do we require contract tests that emulate a future backend DTO/API
+   shape?
+9. **Security posture for API keys:** Is storing user-provided keys only in
+   SecureStore the long-term plan, or should backend-issued scoped tokens be a
+   near-term requirement?
+
+
 ## How to claim a task
 
 1. Pick a task above.
