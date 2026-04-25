@@ -1,4 +1,8 @@
-import "dotenv/config";
+import dotenv from "dotenv";
+// override: true so .env wins over a pre-set empty ANTHROPIC_API_KEY (e.g. when
+// running inside a sandbox that defines it as "" to prevent key leakage).
+dotenv.config({ override: true });
+
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { dirname, join } from "node:path";
