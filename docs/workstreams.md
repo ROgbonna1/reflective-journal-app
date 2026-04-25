@@ -31,10 +31,14 @@ wiring it into the app.
 - Final deliverable: a clean `categorize()` function ready to port into the
   Expo app once Stream B has somewhere to put it
 
-**Touches:** `scripts/categorize.ts`, `scripts/test-skills.json`,
-prompt-iteration notes (anywhere under `scripts/` or `docs/`).
+**Touches:** `scripts/categorizer/` (self-contained Node TS sub-project with
+its own `package.json` so it doesn't conflict with B1's Expo scaffold at the
+project root).
 
-**Status:** in design — flow alignment underway.
+**Status:** prototype scaffolded at `scripts/categorizer/`. Test runner
+(`npm test`) sends 10 fixture skills through `categorize()` against Claude
+Haiku 4.5 and scores against the quality bar. Next: `npm install`, set
+`ANTHROPIC_API_KEY`, run, iterate the prompt to clear the bar.
 
 
 ## Stream B — App Foundation  (for Quantamentals to pick from)
@@ -165,7 +169,7 @@ questions to avoid rework:
 
 | Task | Owner          | Status      | PR  |
 |------|----------------|-------------|-----|
-| A    | Reuben         | in design   | —   |
+| A    | Reuben         | prototype scaffolded; iterating prompt | — |
 | B1   | _(unclaimed)_  |             |     |
 | B2   | _(unclaimed)_  |             |     |
 | B3   | _(unclaimed)_  |             |     |

@@ -1,0 +1,102 @@
+[
+  {
+    "name": "Hip-bump sweep from closed guard",
+    "description": "Sit up, post on far foot, swing the elbow up and over while bumping the hips.",
+    "session": { "giOrNogi": "gi" },
+    "expected": {
+      "primary_game": "closed-guard",
+      "primary_role": "sweep",
+      "acceptable_games": ["closed-guard"]
+    }
+  },
+  {
+    "name": "Knee-cut pass with cross-face",
+    "description": "Slice the inside knee through, kill the inside frame, drive the cross-face, settle into top side.",
+    "session": { "giOrNogi": "nogi" },
+    "expected": {
+      "primary_game": "passing-game",
+      "primary_role": "pass",
+      "acceptable_games": ["passing-game"]
+    }
+  },
+  {
+    "name": "S-mount armbar from mount",
+    "description": "From high mount, climb to S-mount by stepping over the head, isolate the arm, fall back for the armbar.",
+    "session": { "giOrNogi": "gi" },
+    "expected": {
+      "primary_game": "mount",
+      "primary_role": "attack",
+      "acceptable_games": ["mount"]
+    }
+  },
+  {
+    "name": "Bow-and-arrow choke from the back",
+    "description": "From back control with seatbelt, feed the collar, grab the same-side knee, rotate off and finish.",
+    "session": { "giOrNogi": "gi" },
+    "expected": {
+      "primary_game": "back-control",
+      "primary_role": "attack",
+      "acceptable_games": ["back-control"]
+    }
+  },
+  {
+    "name": "Inside heel hook from saddle",
+    "description": "From saddle / inside sankaku, control the leg, expose the heel, finish with the breaking mechanic.",
+    "session": { "giOrNogi": "nogi" },
+    "expected": {
+      "primary_game": "leg-lock-game",
+      "primary_role": "attack",
+      "acceptable_games": ["leg-lock-game"]
+    }
+  },
+  {
+    "name": "Lasso hip-bump sweep",
+    "description": "From lasso guard with sleeve grip and lasso leg, off-balance and swing through to come on top.",
+    "session": { "giOrNogi": "gi" },
+    "expected": {
+      "primary_game": "lasso-guard",
+      "primary_role": "sweep",
+      "acceptable_games": ["lasso-guard"]
+    }
+  },
+  {
+    "name": "Knee-shield to deep half entry",
+    "description": "From half-guard bottom with knee shield, kick the leg through and dive under to deep half.",
+    "session": { "giOrNogi": "nogi" },
+    "expected": {
+      "primary_game": "half-guard-bottom",
+      "primary_role": "transition",
+      "acceptable_games": ["half-guard-bottom", "deep-half-guard"]
+    }
+  },
+  {
+    "name": "Single-leg X entry from butterfly guard",
+    "description": "From seated butterfly with arm-drag, dive under and establish single-leg X on the far leg.",
+    "session": { "giOrNogi": "nogi" },
+    "expected": {
+      "primary_game": "butterfly-guard",
+      "primary_role": "transition",
+      "acceptable_games": ["butterfly-guard", "x-guard"]
+    }
+  },
+  {
+    "name": "Snap-down to front headlock",
+    "description": "From a collar tie, snap the head down hard and follow into a front headlock with arm trap.",
+    "session": { "giOrNogi": "nogi" },
+    "expected": {
+      "primary_game": "standing-takedowns",
+      "primary_role": "setup",
+      "acceptable_games": ["standing-takedowns"]
+    }
+  },
+  {
+    "name": "Top half guard underhook to mount",
+    "description": "From top half guard with underhook, free the trapped leg by walking the foot up, slide knee across to mount.",
+    "session": { "giOrNogi": "nogi" },
+    "expected": {
+      "primary_game": "passing-game",
+      "primary_role": "pass",
+      "acceptable_games": ["passing-game"]
+    }
+  }
+]

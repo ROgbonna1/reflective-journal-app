@@ -1,0 +1,19 @@
+{
+  "name": "@reflective-journal/categorizer",
+  "version": "0.0.0",
+  "private": true,
+  "description": "LLM categorizer prototype for the BJJ reflective journal app. Stream A — see ../../docs/workstreams.md.",
+  "type": "module",
+  "scripts": {
+    "test": "tsx run-tests.ts"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.40.0",
+    "dotenv": "^16.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.6.0"
+  }
+}

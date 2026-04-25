@@ -1,0 +1,103 @@
+import { SeededGame } from "./types.js";
+
+// Mirrors docs/seeded-games.md. Update both together.
+export const SEEDED_GAMES: SeededGame[] = [
+  {
+    slug: "closed-guard",
+    name: "Closed Guard",
+    description:
+      "Bottom guard with both legs locked behind the opponent's back. The guarder controls posture, off-balance, and grips while attacking with sweeps and submissions. Top-player skills (posturing, opening the guard, escaping) belong under Passing Game (Top).",
+    typicalRoles: ["guard", "sweep", "attack", "transition", "setup", "concept"],
+  },
+  {
+    slug: "half-guard-bottom",
+    name: "Half Guard (Bottom)",
+    description:
+      "Bottom position with one of opponent's legs trapped between yours. Knee shield, dogfight, underhook game, deep-half entries from below. Top-half-guard skills file under Passing Game (Top); going under to deep half files under Deep Half Guard.",
+    typicalRoles: ["guard", "sweep", "attack", "transition", "escape", "setup", "concept"],
+  },
+  {
+    slug: "butterfly-guard",
+    name: "Butterfly Guard",
+    description:
+      "Seated open guard with both feet hooked under opponent's thighs. Uses arm-drag, underhooks, and elevation for sweeps and transitions to X-guard or single-leg-X.",
+    typicalRoles: ["guard", "sweep", "attack", "transition", "setup", "concept"],
+  },
+  {
+    slug: "spider-guard",
+    name: "Spider Guard",
+    description:
+      "Open guard controlling both sleeves with feet pressing into opponent's biceps. Common transitions to lasso, triangle, omoplata. Distinct from Lasso Guard — foot stays on the bicep, not threaded through the arm.",
+    typicalRoles: ["guard", "sweep", "attack", "transition", "setup", "concept"],
+  },
+  {
+    slug: "lasso-guard",
+    name: "Lasso Guard",
+    description:
+      "One leg threaded inside-to-outside through the opponent's arm, with sleeve grip on the lasso side. Strong control. Sweeps, back takes, omoplata transitions. Often combined with a spider grip on the other side.",
+    typicalRoles: ["guard", "sweep", "attack", "transition", "setup", "concept"],
+  },
+  {
+    slug: "de-la-riva",
+    name: "De La Riva",
+    description:
+      "Open guard with an outside hook on opponent's far leg, typically with a sleeve or collar grip. Classic platform for sweeps, back takes, and modern leg-lock entries. Reverse DLR variants file here unless explicitly leg-lock-focused, in which case Leg Lock Game also applies.",
+    typicalRoles: ["guard", "sweep", "attack", "transition", "setup", "concept"],
+  },
+  {
+    slug: "x-guard",
+    name: "X-Guard",
+    description:
+      "Underneath open guard with both legs controlling one of opponent's legs in an X. Specialized for standing the opponent up and sweeping. Includes single-leg-X (SLX) entries; SLX skills can also fit Leg Lock Game depending on intent.",
+    typicalRoles: ["guard", "sweep", "transition", "setup", "concept"],
+  },
+  {
+    slug: "deep-half-guard",
+    name: "Deep Half Guard",
+    description:
+      "Far-side bottom position underneath the opponent, often arrived at from half guard. Waiter sweep, roll-under sweeps, back takes.",
+    typicalRoles: ["guard", "sweep", "transition", "setup", "concept"],
+  },
+  {
+    slug: "passing-game",
+    name: "Passing Game (Top)",
+    description:
+      "Top game played against any open or half guard. Knee cut, smash, toreando / leg drag, body-lock pass, over-under, long step. Concepts like staying heavy, killing the inside line, stapling hips live here.",
+    typicalRoles: ["pass", "transition", "setup", "concept"],
+  },
+  {
+    slug: "mount",
+    name: "Mount",
+    description:
+      "Top mount position. Submissions (armbar, ezekiel, mounted triangle, cross-collar), maintenance with grapevines or knees-tight, and S-mount / high-mount transitions. Bottom-of-mount escape skills file under their destination position (e.g. recovering Half Guard Bottom).",
+    typicalRoles: ["guard", "attack", "transition", "setup", "concept"],
+  },
+  {
+    slug: "side-control-top",
+    name: "Side Control / Top",
+    description:
+      "Top of side control, north-south, and knee-on-belly. Submissions (kimura, americana, paper cutter, far-side armbar), pressure maintenance, and transitions to mount, back, or knee-on-belly. Bottom-side escape skills file under their destination guard.",
+    typicalRoles: ["guard", "attack", "transition", "setup", "concept"],
+  },
+  {
+    slug: "back-control",
+    name: "Back Control",
+    description:
+      "Both sides of the back: taking, attacking, retaining, and defending. Seatbelt control, body triangle, RNC, bow-and-arrow, mata-leão setups, and back-defense escapes back to guard.",
+    typicalRoles: ["guard", "attack", "escape", "transition", "setup", "concept"],
+  },
+  {
+    slug: "leg-lock-game",
+    name: "Leg Lock Game",
+    description:
+      "Modern leg-attack system: ashi garami / single-leg-X, 50/50, saddle / inside sankaku, outside ashi. Heel hooks (inside and outside), kneebar, ankle locks (Achilles, toe hold). Entries, inversions to inside position, and breaking mechanics. Skills that involve leg entanglement primarily for finishing legs go here even if entered from another guard like DLR or X.",
+    typicalRoles: ["guard", "attack", "transition", "escape", "setup", "concept"],
+  },
+  {
+    slug: "standing-takedowns",
+    name: "Standing / Takedowns",
+    description:
+      "Everything pre-mat-contact. Grip fighting (gi and no-gi tie-ups), takedown entries (single, double, ankle pick, foot sweeps, judo throws, snap-downs), guard pulls, and takedown defense (sprawl, whizzer, underhook). Pulling guard logs here as a transition into a specific bottom game.",
+    typicalRoles: ["setup", "transition", "attack", "escape", "concept"],
+  },
+];
