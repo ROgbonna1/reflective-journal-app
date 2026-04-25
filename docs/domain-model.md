@@ -436,7 +436,7 @@ Save-first architecture: AI is pure enrichment, it **never blocks a save**.
 
 **In scope**
 - Entities: TrainingSession, Skill, Game, SkillInGame, Reflection, join tables
-- Pre-seeded BJJ game taxonomy (~20 common games)
+- Pre-seeded BJJ game taxonomy (14 common games — see `docs/seeded-games.md`)
 - Skill capture flow with LLM auto-categorization
 - Reflection capture flow with LLM-suggested skill/game links
 - Game detail browse view (skills grouped by role)
