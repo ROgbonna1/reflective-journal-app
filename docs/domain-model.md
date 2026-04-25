@@ -482,7 +482,16 @@ the model looks the way it does:
 - **Categorizer quality bar:** ≥ 8 / 10 exact (game + role) and ≥ 9 / 10
   acceptable (right game, role debatable) on the standalone test set in
   `scripts/categorizer/test-skills.json`. Cleared on the first prototype run
-  with Claude Haiku 4.5 (9 / 9).
+  with Claude Haiku 4.5 (9 / 9). After adding a perspective-anchoring rule
+  (see next bullet), now 9 exact / 10 acceptable.
+- **Top-vs-bottom anchoring in the categorizer prompt.** Resolved by adding
+  an explicit rule: when the skill names a side ("top half guard", "from
+  top X", "bottom Y"), the game is anchored to the practitioner's
+  perspective even when role-keyword cues ("underhook", "frame") suggest
+  the opposite side. Top half-guard sequences file under passing-game, not
+  half-guard-bottom. The single remaining miss is a debatable role call
+  (`pass` vs `transition` on a top-half-to-mount skill), tracked in
+  `scripts/categorizer/README.md`.
 
 ## Open questions
 
@@ -491,7 +500,3 @@ the model looks the way it does:
 2. **Standalone reflections — what does "Suggest links" use as context?** No
    session means no "skills from that session" seed. Likely use last 7-14
    days of skills + all games. Decide when implementing.
-3. **Top-vs-bottom anchoring in the categorizer prompt.** Known iteration
-   item: the prompt over-weights position keywords ("underhook in half
-   guard") rather than the practitioner's perspective ("from top half guard").
-   Tracked in `scripts/categorizer/README.md`.

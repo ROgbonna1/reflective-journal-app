@@ -35,11 +35,13 @@ wiring it into the app.
 its own `package.json` so it doesn't conflict with B1's Expo scaffold at the
 project root).
 
-**Status:** quality bar cleared on first run — **9 / 10 exact**, **9 / 10
-acceptable** against `claude-haiku-4-5`. Multi-game suggestions working as
-designed (e.g. SLX-from-butterfly correctly fanned out into both
-`butterfly-guard` and `x-guard`). One known prompt-iteration item
-(top-vs-bottom perspective on the half-guard pass) tracked in
+**Status:** quality bar cleared with margin — **9 / 10 exact**, **10 / 10
+acceptable** against `claude-haiku-4-5` after adding a perspective-anchoring
+rule to the prompt (top-vs-bottom phrasing now anchors to the practitioner's
+side, fixing the one miss from the baseline run). Multi-game suggestions
+working as designed (e.g. SLX-from-butterfly correctly fanned out into both
+`butterfly-guard` and `x-guard`). The remaining gap is a debatable role
+call (`pass` vs `transition` on a top-half-to-mount skill), tracked in
 `scripts/categorizer/README.md`. Module is ready to port into the Expo app
 once B1 lands.
 

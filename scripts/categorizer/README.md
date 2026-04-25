@@ -45,33 +45,36 @@ swappable — the `categorize` function takes a model option.
 
 ## Latest test result
 
-First baseline run: **9 / 10 exact** (game + role) and **9 / 10 acceptable**
-(right game, role debatable). Quality bar (≥ 8 / ≥ 9) cleared.
+After perspective-anchoring rule added to the prompt: **9 / 10 exact**
+(game + role) and **10 / 10 acceptable** (right game, role debatable).
+Quality bar (≥ 8 / ≥ 9) cleared with margin.
 
-The one miss is a real prompt-iteration signal — captured under
-*Known prompt-iteration items* below.
+Baseline before the fix was 9 exact / 9 acceptable.
 
 ## Known prompt-iteration items
 
-### Top-vs-bottom perspective anchoring
+### Pass vs. transition role on top-half-guard sequences
 
-**Symptom:** *"Top half guard underhook to mount"* (a top-player passing
-sequence) was filed under `half-guard-bottom / transition` instead of
-`passing-game / pass`. The model latched on to the word "underhook" — a
-classic bottom-half-guard cue — even though the surrounding description
-clearly describes the top player escaping the half guard.
+**Symptom:** *"Top half guard underhook to mount"* now files under the
+correct game (`passing-game`) but with role `transition` (0.95 confidence)
+rather than the fixture's expected `pass`. The model's reasoning: the
+sequence ends at mount, so it's a transition through passing-game, not a
+pure pass.
 
-**Hypothesis:** the prompt doesn't tell the model that "from top X" or
-"from bottom X" should anchor the categorization to the practitioner's
-side, overriding any role-keyword associations.
+**Status:** debatable, not a defect. Both roles are defensible — the
+sequence does both clear the half guard *and* land in mount. Fixture may
+need updating to accept either role rather than tightening the prompt
+further.
 
-**Possible prompt addition:** something like *"When the skill names a side
-('top half guard', 'bottom mount'), file it under the game representing
-that side's experience, even if cues like 'underhook' or 'frame' are more
-strongly associated with the opposite side."*
+### Resolved: top-vs-bottom perspective anchoring
 
-Try, re-run `npm test`, see whether case 10 flips while the other 9 stay
-green.
+Added rule 8 to the prompt: *"The practitioner's side overrides keyword
+associations. When the skill names a side ('top half guard', 'from top X',
+'bottom Y'), file it under the game representing that side's experience,
+even if cues like 'underhook' or 'frame' are more strongly associated with
+the opposite side. Top half-guard sequences belong to passing-game, not
+half-guard-bottom."* Case 10 flipped from `half-guard-bottom` to
+`passing-game`. No regressions on the other 9 cases.
 
 ## Dev-environment note
 

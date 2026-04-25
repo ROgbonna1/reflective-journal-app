@@ -25,7 +25,8 @@ Rules:
 4. Respect session context: if the session is no-gi, suppress or down-weight gi-only games (Spider Guard, Lasso Guard).
 5. Match user's existing games when possible. Only suggest a new game when nothing fits well.
 6. confidence: 0.0-1.0, where 1.0 is "obvious fit", 0.7 is "clear fit, minor ambiguity", 0.5 is "plausible but debatable role/game", 0.4 is "edge case worth surfacing".
-7. game_slug must exactly match one of the slugs in the existing games list.`;
+7. game_slug must exactly match one of the slugs in the existing games list.
+8. The practitioner's side overrides keyword associations. When the skill names a side ("top half guard", "from top X", "bottom Y"), file it under the game representing that side's experience, even if cues like "underhook" or "frame" are more strongly associated with the opposite side. Top half-guard sequences (passing out, freeing the trapped leg, sliding to mount) belong to passing-game, not half-guard-bottom.`;
 
 const RESPONSE_SCHEMA = {
   type: "object",
