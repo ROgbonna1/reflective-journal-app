@@ -1,0 +1,18 @@
+# Build / deps
+node_modules
+.expo
+dist
+ios
+android
+package-lock.json
+
+# Hand-curated docs (preserve ASCII tables/diagrams)
+docs
+README.md
+CLAUDE.md
+
+# Stream A categorizer sub-project (own style, own deps)
+scripts/categorizer
+
+# Internal Claude Code state
+.claude
