@@ -5,7 +5,7 @@ The B-tasks are defined in [`workstreams.md`](./workstreams.md); this doc
 orders them and adds the LLM-port and reflection-suggester work that has to
 land before we have a real app.
 
-> **▸ Right now:** **Phase 2a — Data layer (B2)** + **Phase 2b — Settings + LLM key (B4)** in parallel
+> **▸ Right now:** **Phase 2b — Settings + LLM key plumbing (B4)**
 
 
 ## Status snapshot
@@ -16,9 +16,9 @@ DONE      │ Domain model + design docs
           │ Stream A — categorizer prototype  (9/10 exact, 10/10 acceptable)
           │ Perspective-anchoring prompt rule
           │ Phase 1 — Expo scaffold + tab navigation         (B1)
+          │ Phase 2a — Data layer (SQLite + Drizzle + 24 tests) (B2)
 ──────────┼─────────────────────────────────────────────────────────────────
-▸ NEXT    │ Phase 2a — Data layer (SQLite + Drizzle)         (B2)
-          │ Phase 2b — Settings + LLM key plumbing           (B4) ║ parallel
+▸ NEXT    │ Phase 2b — Settings + LLM key plumbing           (B4)
 ──────────┼─────────────────────────────────────────────────────────────────
 QUEUED    │ Phase 3  — Capture UI shells                     (B3)
           │ Phase 4  — Port categorizer + wire skill capture
@@ -105,9 +105,9 @@ until the previous phase is usable in isolation.
 - [x] Query helpers: `getGameWithSkills(gameId)` lives in `db/queries.ts`; `listSkillsBySession(sessionId)` lives in `db/repos/skills.ts` as `listBySession`
 - [x] In-memory test infrastructure (better-sqlite3 + Vitest) — 24 passing tests across all repos + queries + seed
 - [x] Migrations run on app boot via `useDbReady()` hook; native splash stays visible until ready
-- [ ] Verified end-to-end on device: fresh install boots, seeds 14 games
+- [x] Verified end-to-end on device: fresh install boots, `[db] ready — 14 games seeded` confirmed in Metro logs
 
-**DoD:** fresh install creates the DB, seeds the 14 games, repos can read them.
+**DoD met:** fresh install creates the DB, seeds the 14 games, repos can read them.
 
 ### Phase 2b — Settings + LLM key plumbing  (B4)  ║ parallel with 2a
 

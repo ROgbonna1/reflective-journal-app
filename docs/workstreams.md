@@ -176,7 +176,7 @@ questions to avoid rework:
 |------|----------------|-------------|-----|
 | A    | Reuben         | done — quality bar cleared (9/10 exact, 10/10 acceptable after perspective fix); ready to port | — |
 | B1   | Reuben         | done — Expo SDK 54 + Expo Router scaffold landed; tabs verified on device | — |
-| B2   | Reuben         | done — schema + migrations + seeds + repos + 24 passing vitest tests; DoD pending device verify | — |
+| B2   | Reuben         | done — schema + migrations + seeds + repos + 24 passing vitest tests; verified on device | — |
 | B3   | _(unclaimed)_  |             |     |
 | B4   | _(unclaimed)_  |             |     |
 
