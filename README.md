@@ -27,6 +27,8 @@ behavior, schema, or scope shifts.
   shipped on first launch (each description doubles as LLM grounding text)
 - [docs/roadmap.md](./docs/roadmap.md) — phase-by-phase plan from current
   state to MVP, with dependency map and per-phase checklists
+- [docs/dev-log.md](./docs/dev-log.md) — chronological log of meaningful
+  work and decisions; "pick up here" notes when sessions wrap
 - [docs/workstreams.md](./docs/workstreams.md) — parallel work tracks, task
   menu, claim process, and conventions
 - [docs/documentation-inconsistencies.md](./docs/documentation-inconsistencies.md)

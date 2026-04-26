@@ -128,7 +128,8 @@ The first user-visible feature. Scoped tightly: **standalone reflections only**,
 - [x] Loading state — render null while initial fetch resolves (DB read is sub-50ms; flash-of-spinner avoided deliberately)
 - [x] "+" entry point in the header on the feed; refetch on focus via `useFocusEffect` so saves are immediately visible
 - [x] Removed the temporary `[db] ready` log in `hooks/use-db-ready.ts` — reflection feed reading the DB is now the running proof the layer works
-- [ ] Verified end-to-end on device
+- [ ] **Visual polish pass.** Functionality verified on device 2026-04-25; user flagged "UI is off." Specifics in `dev-log.md` § Pick up here. First task on resume.
+- [ ] Verified end-to-end on device (gated on the polish pass)
 - [ ] ~~Light component test for the capture form~~ — deferred. RN component tests would need a `jest-expo` setup; not in scope for this slice. Tracked here so it isn't lost.
 
 **DoD:** you can write a reflection on your phone and it persists across app restarts. The reflection appears in the feed sorted by date.

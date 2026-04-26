@@ -14,6 +14,7 @@ This is a **docs-led** project. Three layers of code exist:
 
 Key docs:
 - `docs/roadmap.md` — phase-by-phase build plan with status snapshot, dependency map, and per-phase checklists. **Authoritative build order** (the B# task numbers in workstreams.md are now just task references, not a sequence).
+- `docs/dev-log.md` — chronological audit trail of meaningful work and decisions. Each session ends with a "Pick up here" section. Read this when resuming after a break to see what was in flight and what's known to be broken.
 - `docs/domain-model.md` — entities, ASCII flow diagrams, LLM prompt shapes, v1 scope, **Resolved decisions log** (read this before changing anything that smells like a previously-settled design question)
 - `docs/seeded-games.md` — the 14 pre-seeded BJJ games; descriptions double as LLM grounding text
 - `docs/workstreams.md` — original Stream A / Stream B split and B-task definitions; useful as task references but build order lives in roadmap.md
