@@ -97,14 +97,15 @@ until the previous phase is usable in isolation.
 
 ### Phase 2a — Data layer  (B2)
 
-- [ ] Drizzle schema for: `TrainingSession`, `Skill`, `Game`, `SkillInGame`, `Reflection`, `ReflectionSkill`, `ReflectionGame`
-- [ ] Drizzle-kit configured for migrations
-- [ ] `seeds/games.json` derived from `docs/seeded-games.md` (slug, name, description, typical_roles, `is_seeded: true`)
-- [ ] Idempotent first-run seed loader
-- [ ] Repository module per entity with CRUD
-- [ ] Query helpers: `getGameWithSkills(gameId)`, `listSkillsBySession(sessionId)`
-- [ ] Unit tests for repos against an in-memory DB
-- [ ] Migration runs on app boot
+- [x] Drizzle schema for: `TrainingSession`, `Skill`, `Game`, `SkillInGame`, `Reflection`, `ReflectionSkill`, `ReflectionGame`. Game grew `slug` and `typical_roles` columns vs. the original doc — both surfaced as needed by the categorizer; `domain-model.md` § Game updated in the same change.
+- [x] Drizzle-kit configured for migrations; `npm run db:generate` regenerates SQL from the schema
+- [x] `seeds/games.json` mirrors `docs/seeded-games.md` (slug, name, description, typicalRoles)
+- [x] Idempotent first-run seed loader (`db/seed.ts`) — uses `INSERT OR IGNORE` keyed on the unique `slug` column
+- [x] Repository functions per entity: create + reads (no update/delete yet — added when a screen needs them, per CLAUDE.md "no abstractions beyond what the task requires")
+- [x] Query helpers: `getGameWithSkills(gameId)` lives in `db/queries.ts`; `listSkillsBySession(sessionId)` lives in `db/repos/skills.ts` as `listBySession`
+- [x] In-memory test infrastructure (better-sqlite3 + Vitest) — 24 passing tests across all repos + queries + seed
+- [x] Migrations run on app boot via `useDbReady()` hook; native splash stays visible until ready
+- [ ] Verified end-to-end on device: fresh install boots, seeds 14 games
 
 **DoD:** fresh install creates the DB, seeds the 14 games, repos can read them.
 

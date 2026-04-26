@@ -60,8 +60,10 @@ A strategic system. Pre-seeded set ships with the app; user can add custom games
 | Field          | Type      | Notes |
 |----------------|-----------|-------|
 | id             | uuid      | PK |
+| slug           | string    | unique, stable. Categorizer references games by slug in LLM prompts (so the LLM can return a deterministic string we resolve back to an id). Seeded games use canonical slugs from `seeded-games.md`; user-created games auto-slugify from name. |
 | name           | string    | e.g. "Closed guard game" |
-| description    | text?     | optional summary |
+| description    | text?     | optional summary; doubles as LLM grounding for seeded games |
+| typical_roles  | Role[]?   | JSON array of roles typical for this game; used as LLM grounding. Nullable for user-created games. |
 | is_seeded      | bool      | true for pre-seeded, false for user-created |
 | created_at     | timestamp ||
 

@@ -6,6 +6,9 @@ ios
 android
 package-lock.json
 
+# Drizzle Kit generated migration metadata
+db/migrations
+
 # Hand-curated docs (preserve ASCII tables/diagrams)
 docs
 README.md
