@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 
 import { db } from '@/db';
 import migrations from '@/db/migrations';
-import { games } from '@/db/schema';
 import { seedGames } from '@/db/seed';
 
 interface DbReadyState {
@@ -25,13 +24,7 @@ export function useDbReady(): DbReadyState {
   useEffect(() => {
     if (!migrated) return;
     seedGames(db, { generateId: randomUUID })
-      .then(async () => {
-        // B2 device-verification log. Remove once B3 lands the real Games
-        // tab and the seed is observable through the UI.
-        const allGames = await db.select().from(games);
-        console.log(`[db] ready — ${allGames.length} games seeded`);
-        setSeeded(true);
-      })
+      .then(() => setSeeded(true))
       .catch((err: unknown) => {
         setSeedError(err instanceof Error ? err : new Error(String(err)));
       });

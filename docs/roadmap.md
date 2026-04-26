@@ -119,15 +119,17 @@ until the previous phase is shippable in isolation.
 
 The first user-visible feature. Scoped tightly: **standalone reflections only**, no session attachment, no skill/game links. That keeps the slice narrow and avoids needing the session-creation UI before Phase 5 needs it anyway.
 
-- [ ] Reflection capture screen — body textarea, mood / energy / intensity sliders (1–5)
-- [ ] Save button → `reflections.create(db, { id, body, mood, energy, intensity })`; navigate back to feed
-- [ ] Reflection feed (replaces placeholder at `app/(tabs)/reflect/index.tsx`) — list newest-first using `reflections.listRecent(db)`
-- [ ] Each feed row: body preview, mood/energy/intensity badges, relative timestamp
-- [ ] Empty state ("No reflections yet — tap + to write your first")
-- [ ] Loading state during initial DB read
-- [ ] "+" entry point on the feed (header button or FAB) to open the capture screen
-- [ ] Light component test for the capture form (basic render)
-- [ ] Remove the temporary `[db] ready` log in `hooks/use-db-ready.ts` once feed renders the seed-derived games or other DB content (the log was an interim B2 verification signal)
+- [x] Reflection capture screen — body textarea, mood / energy / intensity rating rows (1–5 dots)
+- [x] Save button → `reflections.create(db, { id, body, mood, energy, intensity })`; navigates back via `router.back()`
+- [x] Capture screen presents as an iOS modal (Stack.Screen `presentation: 'modal'`)
+- [x] Reflection feed (replaces placeholder at `app/(tabs)/reflect/index.tsx`) — list newest-first using `reflections.listRecent(db)`
+- [x] Each feed row: body preview (3-line clamp), `M / E / I` rating summary, relative timestamp ("2d ago")
+- [x] Empty state ("No reflections yet — tap + to write your first") with primary CTA button
+- [x] Loading state — render null while initial fetch resolves (DB read is sub-50ms; flash-of-spinner avoided deliberately)
+- [x] "+" entry point in the header on the feed; refetch on focus via `useFocusEffect` so saves are immediately visible
+- [x] Removed the temporary `[db] ready` log in `hooks/use-db-ready.ts` — reflection feed reading the DB is now the running proof the layer works
+- [ ] Verified end-to-end on device
+- [ ] ~~Light component test for the capture form~~ — deferred. RN component tests would need a `jest-expo` setup; not in scope for this slice. Tracked here so it isn't lost.
 
 **DoD:** you can write a reflection on your phone and it persists across app restarts. The reflection appears in the feed sorted by date.
 
