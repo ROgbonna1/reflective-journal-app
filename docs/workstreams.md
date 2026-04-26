@@ -4,6 +4,14 @@ Two parallel tracks so both contributors can move without stepping on each
 other. **Stream A** is in flight (LLM categorizer). **Stream B** is a menu of
 independent tasks the colleague can claim in any order.
 
+> **Note (post-B2):** the project shifted to a single-contributor build, and
+> the actual sequencing now lives in [`roadmap.md`](./roadmap.md). The
+> B-task definitions below remain useful as task references (deliverables,
+> file boundaries) but the **B# numbers are not the build order** —
+> `roadmap.md` is authoritative. For example, the B3 (Capture UI shells)
+> work is now split across roadmap Phases 3 and 5, with B4 (Settings/key)
+> sitting between them.
+
 ## Conflict avoidance — file boundaries
 
 | Stream    | Touches                                                          |

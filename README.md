@@ -34,12 +34,12 @@ behavior, schema, or scope shifts.
 
 ## Status
 
-Stream A (LLM categorizer) is done and validated. **Phase 1 (B1 — Expo
-scaffold + tab navigation) has landed**: the app boots with Home / Games /
-Reflect / Profile tabs as placeholder screens. Next up is Phase 2a (B2 —
-data layer). See [docs/roadmap.md](./docs/roadmap.md) for the full
-sequence and [docs/workstreams.md](./docs/workstreams.md) for B-task
-definitions.
+Stream A (LLM categorizer) and Phases 1–2 (Expo scaffold + on-device
+data layer) are done and verified. **Up next: Phase 3 — Reflection
+capture + feed**, the first user-visible feature. Built without the LLM
+on purpose — Reflections work end-to-end first as a vertical slice; LLM
+enrichment lands in Phase 6. See [docs/roadmap.md](./docs/roadmap.md) for
+the full sequence.
 
 ## Run on iPhone (dev)
 

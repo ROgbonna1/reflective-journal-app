@@ -1,11 +1,17 @@
 # MVP Roadmap
 
-Sequencing from "categorizer prototype validated" → working MVP on device.
-The B-tasks are defined in [`workstreams.md`](./workstreams.md); this doc
-orders them and adds the LLM-port and reflection-suggester work that has to
-land before we have a real app.
+Sequencing from "data layer in place" → working MVP on device.
 
-> **▸ Right now:** **Phase 2b — Settings + LLM key plumbing (B4)**
+> **Build order: vertical-slice first.** The original plan was to land all
+> infrastructure (Settings + key plumbing, mock UI shells) before any
+> end-to-end feature. We changed direction after Phase 2 in favor of
+> shipping a real, usable feature first — Reflection capture + feed, no
+> LLM — to validate the full stack on the simplest flow before the
+> LLM-coupled work lands. The save-first invariant in `domain-model.md`
+> § Offline behavior is the design hook that makes this possible: LLM
+> features are pure enrichment, never blockers on persistence.
+>
+> **▸ Right now:** **Phase 3 — Reflection capture + feed (no LLM)**
 
 
 ## Status snapshot
@@ -16,14 +22,14 @@ DONE      │ Domain model + design docs
           │ Stream A — categorizer prototype  (9/10 exact, 10/10 acceptable)
           │ Perspective-anchoring prompt rule
           │ Phase 1 — Expo scaffold + tab navigation         (B1)
-          │ Phase 2a — Data layer (SQLite + Drizzle + 24 tests) (B2)
+          │ Phase 2 — Data layer (SQLite + Drizzle + 24 tests) (B2)
 ──────────┼─────────────────────────────────────────────────────────────────
-▸ NEXT    │ Phase 2b — Settings + LLM key plumbing           (B4)
+▸ NEXT    │ Phase 3 — Reflection capture + feed (no LLM, vertical slice)
 ──────────┼─────────────────────────────────────────────────────────────────
-QUEUED    │ Phase 3  — Capture UI shells                     (B3)
-          │ Phase 4  — Port categorizer + wire skill capture
-          │ Phase 5  — Reflection-link suggester + wire reflect
-          │ Phase 6  — Browse polish + MVP cut
+QUEUED    │ Phase 4 — Settings + LLM key plumbing            (B4)
+          │ Phase 5 — Skill capture + Game browse (manual categorization)
+          │ Phase 6 — LLM enrichment (auto-categorizer + reflection-link suggester)
+          │ Phase 7 — MVP cut + polish
 ──────────┼─────────────────────────────────────────────────────────────────
 DEFERRED  │ See `domain-model.md` § v1 scope → "Deferred"
 ```
@@ -32,55 +38,55 @@ DEFERRED  │ See `domain-model.md` § v1 scope → "Deferred"
 ## Dependency map
 
 ```
-       ┌────────────────────────────────────┐
-       │  Stream A (DONE)                   │
-       │  categorizer module                │
-       └──────────────────┬─────────────────┘
-                          │ ports into app at Phase 4
-                          ▼
-   ┌──────────────────────────────────────────┐
-   │  Phase 1 — B1  (DONE)                    │
-   │  Expo scaffold + tab navigation          │
-   └──────────╤═══════════╤═══════════════╤═══┘
-              │           │               │
-              ▼           ▼               ▼
-   ╔══════════════╗ ╔══════════════╗ ┌──────────────┐
-   ║ Phase 2a     ║ ║ Phase 2b     ║ │ Phase 3      │
-   ║ B2 — DB +    ║ ║ B4 — Settings║ │ B3 — Capture │
-   ║ migrations + ║ ║ + SecureStore║ │ UI shells    │
-   ║ seed loader  ║ ║ key plumbing ║ │ (mock data)  │
-   ╚══════╤═══════╝ ╚══════╤═══════╝ └──────┬───────┘
-          ▲ you are here   ▲ also here      │
-          │                │                │
-          └────────┬───────┴────────────────┘
-                   ▼
-       ┌──────────────────────────────────┐
-       │ Phase 4                          │
-       │ Port categorize() into app       │
-       │ Wire skill capture end-to-end    │
-       └──────────────────┬───────────────┘
-                          ▼
-       ┌──────────────────────────────────┐
-       │ Phase 5                          │
-       │ Reflection-link suggester        │
-       │ Wire reflection capture          │
-       └──────────────────┬───────────────┘
-                          ▼
-       ┌──────────────────────────────────┐
-       │ Phase 6                          │
-       │ Browse polish + MVP cut          │
-       └──────────────────┬───────────────┘
-                          ▼
-                    ╔═══════════╗
-                    ║    MVP    ║
-                    ╚═══════════╝
+       ┌──────────────────────────────────────┐
+       │  Phase 1 ✓  Expo scaffold (B1)       │
+       └────────────────┬─────────────────────┘
+                        ▼
+       ┌──────────────────────────────────────┐
+       │  Phase 2 ✓  Data layer (B2)          │
+       │  schema · migrations · seeds · repos │
+       └────────────────┬─────────────────────┘
+                        ▼
+       ╔══════════════════════════════════════╗
+       ║  Phase 3 — Reflection capture + feed ║   ◄── you are here
+       ║  no LLM, full vertical slice         ║
+       ╚════════════════╤═════════════════════╝
+                        ▼
+       ┌──────────────────────────────────────┐
+       │  Phase 4 — B4  Settings + LLM key    │
+       └────────────────┬─────────────────────┘
+                        ▼
+       ┌──────────────────────────────────────┐
+       │  Phase 5 — Skill capture +           │
+       │  Game browse (manual categorization) │
+       └────────────────┬─────────────────────┘
+                        │
+                        │ ports categorizer module
+                        ▼
+       ┌──────────────────────────────────────┐
+       │  Phase 6 — LLM enrichment            │
+       │  auto-categorizer + link suggester   │
+       └────────────────┬─────────────────────┘
+                        ▼
+       ┌──────────────────────────────────────┐
+       │  Phase 7 — MVP cut + polish          │
+       └────────────────┬─────────────────────┘
+                        ▼
+                  ╔═══════════╗
+                  ║    MVP    ║
+                  ╚═══════════╝
 ```
+
+> The B-task labels in `workstreams.md` (B1–B4) were defined for an
+> original parallel-contributor plan. With a single contributor, the
+> roadmap above is the authoritative build order; B# numbers are now
+> just task references, not a sequence.
 
 
 ## Phase checklists
 
 Each phase has a **definition of done (DoD)** at the bottom. Don't move on
-until the previous phase is usable in isolation.
+until the previous phase is shippable in isolation.
 
 ### Phase 1 — Expo scaffold + tab navigation  (B1)  ✓ DONE
 
@@ -95,7 +101,7 @@ until the previous phase is usable in isolation.
 
 **DoD met:** app launches on the phone and the tab bar works.
 
-### Phase 2a — Data layer  (B2)
+### Phase 2 — Data layer  (B2)  ✓ DONE
 
 - [x] Drizzle schema for: `TrainingSession`, `Skill`, `Game`, `SkillInGame`, `Reflection`, `ReflectionSkill`, `ReflectionGame`. Game grew `slug` and `typical_roles` columns vs. the original doc — both surfaced as needed by the categorizer; `domain-model.md` § Game updated in the same change.
 - [x] Drizzle-kit configured for migrations; `npm run db:generate` regenerates SQL from the schema
@@ -109,52 +115,69 @@ until the previous phase is usable in isolation.
 
 **DoD met:** fresh install creates the DB, seeds the 14 games, repos can read them.
 
-### Phase 2b — Settings + LLM key plumbing  (B4)  ║ parallel with 2a
+### Phase 3 — Reflection capture + feed  (no LLM)
 
-- [ ] Settings screen: masked key input, save / clear / replace
-- [ ] Expo SecureStore wrapper (read / write / delete)
-- [ ] "Test connection" button that hits Anthropic with a no-op and reports pass/fail
-- [ ] "No key set" state surfaced gracefully across the app
+The first user-visible feature. Scoped tightly: **standalone reflections only**, no session attachment, no skill/game links. That keeps the slice narrow and avoids needing the session-creation UI before Phase 5 needs it anyway.
+
+- [ ] Reflection capture screen — body textarea, mood / energy / intensity sliders (1–5)
+- [ ] Save button → `reflections.create(db, { id, body, mood, energy, intensity })`; navigate back to feed
+- [ ] Reflection feed (replaces placeholder at `app/(tabs)/reflect/index.tsx`) — list newest-first using `reflections.listRecent(db)`
+- [ ] Each feed row: body preview, mood/energy/intensity badges, relative timestamp
+- [ ] Empty state ("No reflections yet — tap + to write your first")
+- [ ] Loading state during initial DB read
+- [ ] "+" entry point on the feed (header button or FAB) to open the capture screen
+- [ ] Light component test for the capture form (basic render)
+- [ ] Remove the temporary `[db] ready` log in `hooks/use-db-ready.ts` once feed renders the seed-derived games or other DB content (the log was an interim B2 verification signal)
+
+**DoD:** you can write a reflection on your phone and it persists across app restarts. The reflection appears in the feed sorted by date.
+
+### Phase 4 — Settings + LLM key plumbing  (B4)
+
+Lives behind a Settings sub-screen under the Profile tab (per the architecture call we made before kicking it off).
+
+- [ ] Settings screen at `app/(tabs)/profile/settings.tsx` — masked key input, save / clear / replace
+- [ ] Expo SecureStore wrapper at `app/lib/secure-storage.ts` (read / write / delete)
+- [ ] `useAnthropicKey()` hook returning `string | null`, used by Phase 6's call sites
+- [ ] "Test connection" button — fires a 1-token Haiku call (~$0.0001) and reports green check / red x
+- [ ] "No key set" state surfaced gracefully (banner or settings hint, depending on context)
 
 **DoD:** paste your Anthropic key into Settings, tap "Test connection," get a green check.
 
-### Phase 3 — Capture UI shells  (B3)  ║ parallel with 2a/2b once Phase 1 lands
+### Phase 5 — Skill capture + Game browse  (DB-wired, manual categorization)
 
-- [ ] Skill capture screen (form fields + "Save & categorize")
-- [ ] Reflection capture screen (body + mood / energy / intensity sliders)
-- [ ] Game list (mock games) and Game detail (mock skills grouped by role)
-- [ ] Reflection feed screen
-- [ ] Empty / loading / error states sketched
-- [ ] Component tests for non-trivial render logic
+Wires Skills + Games to real DB data. LLM still not in the picture — categorization is manual until Phase 6.
 
-**DoD:** every screen is reachable with mock data; nothing wired to the DB yet.
+- [ ] Session create flow — minimal form (date, gym, sessionType, gi/nogi); `sessions.create(db, ...)`. Reused by Skill capture and (later) by Reflection-with-session.
+- [ ] Skill capture screen — form (name, description, session picker), Save with `pendingCategorization: true`
+- [ ] Manual "add to game" UI — after saving a skill, pick game(s) + role(s) and persist via `skillInGames.createMany`
+- [ ] Game list (replaces placeholder at `app/(tabs)/games/index.tsx`) — list 14 seeded games + any user-created
+- [ ] Game detail at `app/(tabs)/games/[gameId].tsx` — uses `getGameWithSkills`, renders skills grouped by role
+- [ ] Skill detail screen (read-only) — shows description, session, filed games
 
-### Phase 4 — Port categorizer + wire skill capture
+**DoD:** you can log a skill, manually file it under one or more games with roles, and browse the game's filed skills grouped by role.
 
-- [ ] Move `categorize()` into `app/lib/categorizer/` (preserve the interface; swap dotenv → SecureStore for the key)
-- [ ] Read the user's existing games from the DB instead of hardcoded `SEEDED_GAMES`
-- [ ] Skill capture: form → save Skill row → call `categorize()` → review sheet → persist accepted `SkillInGame` rows
-- [ ] Offline path: save with `pending_categorization = true`; banner on next foreground
-- [ ] Manual categorization fallback when API key missing or call fails
+### Phase 6 — LLM enrichment  (auto-categorizer + reflection-link suggester)
 
-**DoD:** logging a real skill from class produces correctly categorized `SkillInGame` rows.
+Layers AI on top of the working DB-wired flows from Phases 3 and 5. Both LLM features are pure enrichment — never blocks a save.
 
-### Phase 5 — Reflection-link suggester + wire reflection capture
+- [ ] Port `scripts/categorizer/` → `app/lib/categorizer/` (preserve the `SkillCategorizer` interface; swap dotenv → SecureStore for the key, expo-crypto for IDs)
+- [ ] Read existing games from the DB at categorize time, not from `SEEDED_GAMES`
+- [ ] Skill capture: form → save Skill (still with `pending_categorization: true`) → call `categorize()` → review sheet → user accepts → `skillInGames.createMany` → flip `pending_categorization` to false
+- [ ] "Categorize now" button on any skill with `pending_categorization = true` (manual retry, used when offline at save time)
+- [ ] Build the reflection-link suggester per `domain-model.md` (skill_links + game_links)
+- [ ] Reflection capture (when re-extending Phase 3 to support links): post-save → call suggester → confirm-links sheet → `reflectionSkills` / `reflectionGames`
+- [ ] Decide standalone-reflection context (last 7–14 days of skills + all games?) — open question #2 in `domain-model.md`
+- [ ] Reflection capture also gains the session picker here (so a reflection can attach to a session)
 
-- [ ] Build the second prompt (skill_links + game_links) per `domain-model.md`
-- [ ] Reflection capture: form → save Reflection → call suggester → confirm-links sheet → persist `ReflectionSkill` / `ReflectionGame`
-- [ ] Decide standalone-reflection context (last 7–14 days of skills + all games?) — open question #2 in `domain-model.md`, resolve here
+**DoD:** logging a skill auto-fills its game(s) with the right role(s); writing a reflection auto-suggests linked skills/games.
 
-**DoD:** writing a reflection produces correct links to the skills and games it mentions.
+### Phase 7 — MVP cut + polish
 
-### Phase 6 — Browse polish + MVP cut
+- [ ] All empty / loading / error states pass a quick QA pass on every flow
+- [ ] Reflection feed gains filtering by session/game (small extension of Phase 3)
+- [ ] You can use the app for a real training week without falling back to notes apps
 
-- [ ] Game detail renders skills grouped by role from the DB
-- [ ] Reflection feed renders chronologically, filterable by session/game
-- [ ] Empty / loading / error states pass a quick QA pass on every flow
-- [ ] You can use the app for a real training week without escape hatches
-
-**DoD:** you've used it on your own phone for one full BJJ week without falling back to notes apps.
+**DoD:** you've used it on your own phone for one full BJJ week without escape hatches.
 
 
 ## Keeping this doc accurate
